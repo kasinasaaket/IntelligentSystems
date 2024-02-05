@@ -1,0 +1,83 @@
+#PWD : vboxuser@Ubuntu1:~$
+python3 --version
+pip3 --version
+#Command pip3 not found but can be installed with:
+apt install
+
+su root
+#Password: changeme
+
+
+#PWD : root@Ubuntu1:/home/vboxuser# 
+apt-get install sudo -y
+
+#PWD : root@Ubuntu1:/home/vboxuser#
+su root
+chmod 0440 /etc/sudoers
+adduser vboxuser sudo
+
+
+#PWD : vboxuser@Ubuntu1:~$
+sudo apt install python3-pip
+
+#Do you want to continue? [Y/n] Y
+
+#PWD : root@Ubuntu1:/home/vboxuser#
+pip3 --version
+sudo apt install git
+
+#Do you want to continue? [Y/n] Y
+
+#PWD : root@Ubuntu1:/home/vboxuser#
+git --version
+git clone https://github.com/Vikas098766/Microservices.git
+cd Microservices
+
+#PWD : root@Ubuntu1:/home/vboxuser/Microservices#
+python3 -m venv venv
+
+#ensurepip is not available. But can be installed with:
+#sudo apt install python3.10-venv
+
+#PWD : root@Ubuntu1:/home/vboxuser/Microservices#
+sudo apt install python3.10-venv
+
+#Do you want to continue? [Y/n] Y
+
+#PWD : root@Ubuntu1:/home/vboxuser/Microservices#
+python3 -m venv venv
+source venv/bin/activate
+
+#PWD : root@Ubuntu1:/home/vboxuser/Microservices#
+(venv): pip3 install -r requirements.txt
+(venv): sudo apt update
+(venv): sudo apt install docker.io
+
+Do you want to continue? [Y/n] Y
+
+#PWD : root@Ubuntu1:/home/vboxuser/Microservices#
+(venv): docker --version
+
+(venv): nano Dockerfile
+
+FROM python:3.10.12
+
+WORKDIR /app
+
+COPY . /app
+
+RUN python3 -m venv venv
+RUN . venv/bin/activate && pip3 install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python3","app.py"]
+
+#PWD : root@Ubuntu1:/home/vboxuser/Microservices#
+(venv): dir
+(venv): python app.py
+
+#Running flask app 'ms' (lazy loading)
+http://10.0.2.15:5000/  (Press CTRL+C to quit)
+
+
